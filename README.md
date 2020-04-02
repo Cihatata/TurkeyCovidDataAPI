@@ -11,7 +11,7 @@ node app.js
 ```
 ## API
 ```
-Request /api
+Request api.coronanaliz.com
 ```
 ```Javascript
 Response  
