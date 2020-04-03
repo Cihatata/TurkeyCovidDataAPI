@@ -26,7 +26,7 @@ checkCache = (req, res, next) => {
         }
         //if no match found
         if (data != null) {
-            res.send(data);
+            res.send(JSON.parse(data));
         } else {
             //proceed to next middleware function
             next();
