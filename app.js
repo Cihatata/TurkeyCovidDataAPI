@@ -43,7 +43,7 @@ app.get('/', checkCache, async (req, res) => {
     res.send(result);
 })
 app.get('/provinces', checkCache, (req, res) => {
-    log.debug('sa')
+    
     log.info(req.rawHeaders)
     let result = province.provinces
     redis_client.setex('/provinces',60,JSON.stringify(result))
