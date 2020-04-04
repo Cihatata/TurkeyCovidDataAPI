@@ -27,6 +27,7 @@ checkCache = (req, res, next) => {
         }
         //if no match found
         if (data != null) {
+            console.log('girdi')
             res.send(JSON.parse(data));
         } else {
             //proceed to next middleware function
@@ -36,18 +37,17 @@ checkCache = (req, res, next) => {
 };
 
 app.get('/', checkCache, async (req, res) => {
-    log.info(req.rawHeaders)
     const id = req.originalUrl
-   const result = await service.getResult
+    const result = await service.getResult
     redis_client.setex(id, 2*60, JSON.stringify(result));
     res.send(result);
+    log.info('root')
 })
 app.get('/provinces', checkCache, (req, res) => {
-    
-    log.info(req.rawHeaders)
     let result = province.provinces
     redis_client.setex('/provinces',60,JSON.stringify(result))
     res.send(result)
+    log.info('provinces')
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

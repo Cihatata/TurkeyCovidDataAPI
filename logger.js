@@ -2,9 +2,7 @@ const bunyan = require('bunyan')
 
 let log = bunyan.createLogger({
     name: 'api',
-    serializers: {
-        req: bunyan.stdSerializers.req,
-    },
+    serializers: bunyan.stdSerializers,
     streams: [
         {
             level: 'debug',
