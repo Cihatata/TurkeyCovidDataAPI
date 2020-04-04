@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 8000
 const cors = require("cors")
+const log = require('./logger')
 const redis = require('redis')
 const service = require('./index')
 const province = require('./provinces')
@@ -35,12 +36,15 @@ checkCache = (req, res, next) => {
 };
 
 app.get('/', checkCache, async (req, res) => {
+    log.info(req.rawHeaders)
     const id = req.originalUrl
    const result = await service.getResult
     redis_client.setex(id, 2*60, JSON.stringify(result));
     res.send(result);
 })
 app.get('/provinces', checkCache, (req, res) => {
+    log.debug('sa')
+    log.info(req.rawHeaders)
     let result = province.provinces
     redis_client.setex('/provinces',60,JSON.stringify(result))
     res.send(result)
