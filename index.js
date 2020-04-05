@@ -15,6 +15,7 @@ let obj ={
     confirmed_cases:'',
     confirmed_cases_today:'',
     deaths_today:'',
+    recoverd_today:'',
     date:''
 }
 let xd={}
@@ -65,6 +66,7 @@ const getResults = async () => {
     obj.confirmed_cases=parseInt(arr2[1].split('.').join(""))
     obj.confirmed_cases_today=parseInt(arr2[3].split('.').join(""))
     obj.deaths_today=parseInt(arr2[5].split('.').join(""))
+    obj.recoverd_today=parseInt(arr2[7].split('.').join(""))
     obj.date=date
     return obj;
 };
